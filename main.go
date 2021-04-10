@@ -87,7 +87,7 @@ func DownloadFile(url string, filename string) (ok bool) {
 	defer resp.Body.Close()
 	bytes, err := ioutil.ReadAll(resp.Body)
 	HandleError(err, "resp.body")
-	filename = "D:/Gowork/pa/Img/" + filename
+	filename = "/" + filename
 	//写出
 	err = ioutil.WriteFile(filename, bytes, 0)
 	if err != nil {
@@ -120,7 +120,7 @@ func DownloadImg() {
 
 func main() {
 	//初始化
-	chanImageUrls = make(chan string, 100000)
+	chanImageUrls = make(chan string, 1000000)
 	chanTask = make(chan string, 8)
 	//爬虫协程
 	for i := 1; i < 9; i++ {
